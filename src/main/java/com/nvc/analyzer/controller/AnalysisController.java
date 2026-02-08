@@ -9,22 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class MainController {
+public class AnalysisController {
 
-    @FXML
-    private TextField observationField;
-
-    @FXML
-    private TextField feelingField;
-
-    @FXML
-    private TextField needField;
-
-    @FXML
-    private TextField requestField;
-
-    @FXML
-    private TextArea resultArea;
+    @FXML private TextField observationField;
+    @FXML private TextField feelingField;
+    @FXML private TextField needField;
+    @FXML private TextField requestField;
+    @FXML private TextArea resultArea;
 
     @FXML
     public void initialize() {
