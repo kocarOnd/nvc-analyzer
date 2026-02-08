@@ -1,9 +1,12 @@
 package com.nvc.analyzer.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.nvc.analyzer.App;
 import com.nvc.analyzer.model.NvcProcess;
 import com.nvc.analyzer.model.NvcValidator;
+import com.nvc.analyzer.service.DataService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -17,10 +20,7 @@ public class AnalysisController {
     @FXML private TextField requestField;
     @FXML private TextArea resultArea;
 
-    @FXML
-    public void initialize() {
-        System.out.println("Controller initialized!");
-    }
+    private final DataService dataService = new DataService();
 
     @FXML
     private void handleAnalyze() {
@@ -65,5 +65,33 @@ public class AnalysisController {
         }
 
         resultArea.setText(result.toString());
+    }
+
+    @FXML
+    private void handleSave() {
+        String obs = observationField.getText();
+        String feel = feelingField.getText();
+        String need = needField.getText();
+        String req = requestField.getText();
+
+        if (!obs.isBlank() && !feel.isBlank() && !need.isBlank() && !req.isBlank()) {
+            
+            NvcProcess newProcess = new NvcProcess();
+            newProcess.setObservation(obs);
+            newProcess.setFeeling(feel);
+            newProcess.setNeed(need);
+            newProcess.setRequest(req);
+
+            List<NvcProcess> allProcesses = dataService.loadProcesses();
+            allProcesses.add(newProcess);
+            dataService.saveProcesses(allProcesses);
+
+            resultArea.setText("Saved!\n\n" + newProcess.toString());
+        }
+    }
+
+    @FXML
+    private void goBack() throws IOException {
+        App.setRoot("menu_view");
     }
 }

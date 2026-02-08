@@ -7,6 +7,7 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
+nvc_data.json
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.properties
 
