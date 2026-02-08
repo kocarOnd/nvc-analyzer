@@ -13,7 +13,6 @@ public class MenuController {
 
     @FXML
     private void switchToBrowse() throws IOException {
-        System.out.println("Browse feature coming soon...");
-        // App.setRoot("list_view"); 
+        App.setRoot("history_view");
     }
 }
