@@ -14,14 +14,20 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nvc/analyzer/view/analysis_view.fxml"));
-        Parent root = loader.load();
 
-        scene = new Scene(root, 600, 700); // Width: 600, Height: 700
-        
+        scene = new Scene(loadFXML("menu_view"), 640, 480);
         stage.setScene(scene);
         stage.setTitle("NVC Analyzer");
         stage.show();
+    }
+
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/nvc/analyzer/view/" + fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
