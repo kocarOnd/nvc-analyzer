@@ -25,6 +25,17 @@ public class AnalysisController {
     private final DataService dataService = new DataService();
     private final NvcValidator validator = new NvcValidator();
 
+    private NvcProcess currentProcess;
+
+    public void setProcess(NvcProcess process) {
+        this.currentProcess = process;
+        
+        observationField.setText(process.getObservation());
+        feelingField.setText(process.getFeeling());
+        needField.setText(process.getNeed());
+        requestField.setText(process.getRequest());
+    }
+
     @FXML
     private void handleAnalyze() {
         String obs = observationField.getText();
@@ -52,7 +63,6 @@ public class AnalysisController {
             result.append("\n"); 
         }
         
-        // Checking if fields are empty
         if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
             result.append("Please fill in all 4 steps to complete the NVC process!");
         } else {
@@ -80,18 +90,33 @@ public class AnalysisController {
             showAlert("Missing Info", "Please fill in all fields before saving.");
             return;
         }
-        
-        NvcProcess newProcess = new NvcProcess();
-        newProcess.setObservation(obs);
-        newProcess.setFeeling(feel);
-        newProcess.setNeed(need);
-        newProcess.setRequest(req);
 
         List<NvcProcess> allProcesses = dataService.loadProcesses();
-        allProcesses.add(newProcess);
-        dataService.saveProcesses(allProcesses);
 
-        showAlert("Success", "Your NVC analysis has been saved succesfully!");
+        if (currentProcess == null) {
+            NvcProcess newProcess = new NvcProcess();
+            newProcess.setObservation(obs);
+            newProcess.setFeeling(feel);
+            newProcess.setNeed(need);
+            newProcess.setRequest(req);
+            
+            allProcesses.add(newProcess);
+            showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            
+        } else {
+            for (int i = 0; i < allProcesses.size(); i++) {
+                if (allProcesses.get(i).getId().equals(currentProcess.getId())) {
+                    allProcesses.get(i).setObservation(obs);
+                    allProcesses.get(i).setFeeling(feel);
+                    allProcesses.get(i).setNeed(need);
+                    allProcesses.get(i).setRequest(req);
+                    break; 
+                }
+            }
+            showAlert("Success", "The analysis has been updated successfully!");
+        }
+        
+        dataService.saveProcesses(allProcesses);
             
     }
 
