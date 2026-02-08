@@ -88,7 +88,7 @@ public class AnalysisController {
             allProcesses.add(newProcess);
             dataService.saveProcesses(allProcesses);
 
-            resultArea.setText("Saved!\n\n" + newProcess.toString());
+            showAlert("Success", "Your NVC analysis has been saved succesfully!");
         } else {
             showAlert("Missing Info", "Please fill in all fields before saving.");
             return;
