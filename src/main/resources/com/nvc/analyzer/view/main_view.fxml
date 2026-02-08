@@ -29,12 +29,12 @@
 
     <VBox spacing="5.0" alignment="CENTER_LEFT">
         <Label text="2. Feeling (How do you feel about it?)" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="feelingField" promptText="e.g., 'I feel annoyed'" />
+        <TextField fx:id="feelingField" promptText="e.g., 'annoyed'" />
     </VBox>
 
     <VBox spacing="5.0" alignment="CENTER_LEFT">
         <Label text="3. Need (What do you need that caused this feeling?)" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="needField" promptText="e.g., 'I need order and cleanliness'" />
+        <TextField fx:id="needField" promptText="e.g., 'order and cleanliness'" />
     </VBox>
 
     <VBox spacing="5.0" alignment="CENTER_LEFT">
