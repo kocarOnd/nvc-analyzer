@@ -76,23 +76,23 @@ public class AnalysisController {
         String need = needField.getText();
         String req = requestField.getText();
 
-        if (!obs.isBlank() && !feel.isBlank() && !need.isBlank() && !req.isBlank()) {
-            
-            NvcProcess newProcess = new NvcProcess();
-            newProcess.setObservation(obs);
-            newProcess.setFeeling(feel);
-            newProcess.setNeed(need);
-            newProcess.setRequest(req);
-
-            List<NvcProcess> allProcesses = dataService.loadProcesses();
-            allProcesses.add(newProcess);
-            dataService.saveProcesses(allProcesses);
-
-            showAlert("Success", "Your NVC analysis has been saved succesfully!");
-        } else {
+        if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
             showAlert("Missing Info", "Please fill in all fields before saving.");
             return;
         }
+        
+        NvcProcess newProcess = new NvcProcess();
+        newProcess.setObservation(obs);
+        newProcess.setFeeling(feel);
+        newProcess.setNeed(need);
+        newProcess.setRequest(req);
+
+        List<NvcProcess> allProcesses = dataService.loadProcesses();
+        allProcesses.add(newProcess);
+        dataService.saveProcesses(allProcesses);
+
+        showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            
     }
 
     @FXML
