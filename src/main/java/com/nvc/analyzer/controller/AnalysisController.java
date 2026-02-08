@@ -11,6 +11,8 @@ import com.nvc.analyzer.service.DataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class AnalysisController {
 
@@ -21,6 +23,7 @@ public class AnalysisController {
     @FXML private TextArea resultArea;
 
     private final DataService dataService = new DataService();
+    private final NvcValidator validator = new NvcValidator();
 
     @FXML
     private void handleAnalyze() {
@@ -29,7 +32,6 @@ public class AnalysisController {
         String need = needField.getText();
         String req = requestField.getText();
 
-        NvcValidator validator = new NvcValidator();
         List<String> obsWarnings = validator.analyzeObservation(obs);
         List<String> feelWarnings = validator.analyzeFeeling(feel);
 
@@ -87,11 +89,22 @@ public class AnalysisController {
             dataService.saveProcesses(allProcesses);
 
             resultArea.setText("Saved!\n\n" + newProcess.toString());
+        } else {
+            showAlert("Missing Info", "Please fill in all fields before saving.");
+            return;
         }
     }
 
     @FXML
     private void goBack() throws IOException {
         App.setRoot("menu_view");
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
