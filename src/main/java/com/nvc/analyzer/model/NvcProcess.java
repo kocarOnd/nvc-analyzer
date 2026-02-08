@@ -1,16 +1,28 @@
 package com.nvc.analyzer.model;
 
+import java.util.UUID;
+
 public class NvcProcess {
+    private String id;
     private String observation;
     private String feeling;
     private String need;
     private String request;
 
     public NvcProcess() {
+        this.id = UUID.randomUUID().toString();
         this.observation = "";
         this.feeling = "";
         this.need = "";
         this.request = "";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getObservation() {
