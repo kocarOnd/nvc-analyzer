@@ -15,7 +15,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        scene = new Scene(loadFXML("menu_view"), 800, 600);
+        scene = new Scene(loadFXML("menu_view"), 1024, 768);
         stage.setScene(scene);
         stage.setTitle("NVC Analyzer");
         stage.show();

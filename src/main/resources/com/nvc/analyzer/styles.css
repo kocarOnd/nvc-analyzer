@@ -1,0 +1,106 @@
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+}
+
+.label {
+    -fx-text-fill: #333333;
+}
+
+.button {
+    -fx-background-color: #4A90E2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    background-color: #4A90E2;
+    font-size: 14px;
+    padding: 8 15 8 15;
+    cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #357ABD; 
+    background-color: #357ABD; 
+}
+
+.text-field, .text-area {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 8;
+    background-color: white;
+    border-color: #cccccc;
+    border-radius: 5;
+    padding: 8;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #4A90E2;
+    -fx-background-color: #ffffff;
+    border-color: #4A90E2;
+    background-color: #ffffff;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5;
+    background-color: transparent;
+    border-color: #dddddd;
+    border-radius: 5;
+}
+
+.list-cell {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eeeeee transparent;
+    padding: 10;
+    background-color: white;
+    border-color: transparent transparent #eeeeee transparent;
+}
+
+.list-cell:filled:selected, .list-cell:filled:selected:hover {
+    -fx-background-color: #e3f2fd; 
+    -fx-text-fill: black;
+    background-color: #e3f2fd; 
+}
+
+.list-cell:even {
+    -fx-background-color: #fcfcfc;
+    background-color: #fcfcfc;
+}
+
+#green-btn {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    background-color: #2ecc71;
+    font-weight: bold;
+}
+
+#green-btn:hover {
+    -fx-background-color: #27ae60; 
+    -fx-cursor: hand;
+    background-color: #27ae60; 
+    cursor: hand;
+}
+
+#white-btn {
+    -fx-background-color: white; 
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    background-color: white;
+    font-weight: bold;
+}
+
+#white-btn:hover {
+    -fx-background-color: lightgray; 
+    -fx-cursor: hand;
+    background-color: lightgray; 
+    cursor: hand;
+}

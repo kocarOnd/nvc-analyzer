@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nvc.analyzer.controller.AnalysisController">
+<VBox alignment="TOP_CENTER" spacing="15.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nvc.analyzer.controller.AnalysisController">
     
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -46,11 +46,11 @@
     </VBox>
 
     <HBox spacing="5.0" alignment="CENTER">
-        <Button text="Analyze &amp; Construct Sentence" onAction="#handleAnalyze" maxWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
-        <Button text="Save" onAction="#handleSave" maxWidth="Infinity" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 14px;"/>
+        <Button text="Analyze!" onAction="#handleAnalyze" id="green-btn" maxWidth="Infinity"/>
+        <Button text="Save" onAction="#handleSave" id="white-btn" maxWidth="Infinity"/>
     </HBox>
 
     <Label text="Result:" style="-fx-font-weight: bold;"/>
-    <TextArea fx:id="resultArea" editable="false" wrapText="true" prefHeight="100.0" style="-fx-control-inner-background: #f4f4f4;"/>
+    <TextArea fx:id="resultArea" editable="false" wrapText="true" prefHeight="200.0" style="-fx-control-inner-background: #f4f4f4;"/>
 
 </VBox>
