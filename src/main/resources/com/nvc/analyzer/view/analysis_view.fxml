@@ -46,7 +46,8 @@
     </VBox>
 
     <HBox spacing="5.0" alignment="CENTER">
-        <Button text="Analyze!" onAction="#handleAnalyze" id="green-btn" maxWidth="Infinity"/>
+        <Button text="Analyze" onAction="#handleAnalyze" id="green-btn" maxWidth="Infinity"/>
+        <Button text="Write out" onAction="#handleWrite" id="white-btn" maxWidth="Infinity"/>
         <Button text="Save" onAction="#handleSave" id="white-btn" maxWidth="Infinity"/>
     </HBox>
 

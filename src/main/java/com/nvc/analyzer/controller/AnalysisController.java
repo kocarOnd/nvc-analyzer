@@ -65,6 +65,28 @@ public class AnalysisController {
         
         if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
             result.append("Please fill in all 4 steps to complete the NVC process!");
+        } 
+
+        resultArea.setText(result.toString());
+    }
+
+    @FXML
+    private void handleWrite() {
+        String obs = observationField.getText();
+        String feel = feelingField.getText();
+        String need = needField.getText();
+        String req = requestField.getText();
+
+        NvcProcess process = new NvcProcess();
+        process.setObservation(obs);
+        process.setFeeling(feel);
+        process.setNeed(need);
+        process.setRequest(req);
+        
+        StringBuilder result = new StringBuilder();
+        
+        if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
+            result.append("Please fill in all 4 steps to complete the NVC process!");
         } else {
             result.append("Here is your NVC Statement:\n\n");
             result.append(String.format(
