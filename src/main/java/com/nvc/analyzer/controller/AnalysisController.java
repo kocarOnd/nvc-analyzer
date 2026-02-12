@@ -1,6 +1,7 @@
 package com.nvc.analyzer.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import com.nvc.analyzer.App;
@@ -23,7 +24,10 @@ public class AnalysisController {
     @FXML private TextArea resultArea;
 
     private final DataService dataService = new DataService();
-    private final NvcValidator validator = new NvcValidator();
+    private NvcValidator observationValidator;
+    private NvcValidator feelingValidator;
+    private NvcValidator needValidator;
+    private NvcValidator requestValidator;
 
     private NvcProcess currentProcess;
 
@@ -37,14 +41,36 @@ public class AnalysisController {
     }
 
     @FXML
+    public void initialize() {
+        try {
+            observationValidator = createValidator("observation", "com/nvc/analyzer/rule/observation_rules.json");
+            feelingValidator = createValidator("feeling", "com/nvc/analyzer/rule/feeling_rules.json");
+            needValidator = createValidator("need", "com/nvc/analyzer/rule/need_rules.json");
+            requestValidator = createValidator("request", "com/nvc/analyzer/rule/request_rules.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private NvcValidator createValidator(String type, String resourcePath) throws IOException {
+        InputStream is = getClass().getClassLoader().getResourceAsStream(resourcePath);
+        if (is == null) {
+            throw new IOException("Resource not found: " + resourcePath);
+        }
+        return new NvcValidator(type, is);
+    }
+
+    @FXML
     private void handleAnalyze() {
         String obs = observationField.getText();
         String feel = feelingField.getText();
         String need = needField.getText();
         String req = requestField.getText();
 
-        List<String> obsWarnings = validator.analyzeObservation(obs);
-        List<String> feelWarnings = validator.analyzeFeeling(feel);
+        List<String> obsWarnings = observationValidator.analyze(obs);
+        List<String> feelWarnings = feelingValidator.analyze(feel);
+        List<String> needWarnings = needValidator.analyze(need);
+        List<String> reqWarnings = requestValidator.analyze(req);
 
         NvcProcess process = new NvcProcess();
         process.setObservation(obs);
@@ -56,7 +82,7 @@ public class AnalysisController {
         
         StringBuilder result = new StringBuilder();
 
-        if (!obsWarnings.isEmpty() || !feelWarnings.isEmpty()) {
+        if (!obsWarnings.isEmpty() || !feelWarnings.isEmpty() || !needWarnings.isEmpty() || !reqWarnings.isEmpty()) {
             result.append("ANALYSIS & TIPS\n");
             for (String w : obsWarnings) result.append(w).append("\n");
             for (String w : feelWarnings) result.append(w).append("\n");

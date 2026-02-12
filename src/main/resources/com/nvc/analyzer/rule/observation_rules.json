@@ -1,0 +1,12 @@
+[
+  {
+    "category": "exaggeration",
+    "words": ["always", "never", "constantly", "every time"],
+    "message": "⚠️ Warning: This word is often used as exaggeration. Try to reference a specific moment."
+  },
+  {
+    "category": "evaluation",
+    "words": ["good", "bad", "wrong", "right", "lazy", "mean"],
+    "message": "⚠️ Warning: This word is often used as evaluation. Try describing the neutral action instead."
+  }
+]

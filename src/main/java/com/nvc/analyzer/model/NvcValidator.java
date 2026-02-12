@@ -1,35 +1,44 @@
 package com.nvc.analyzer.model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class NvcValidator {
+    private final String type;
+    private List<NvcRule> rules;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<String> analyzeObservation(String text) {
-        List<String> warnings = new ArrayList<>();
-        String lower = text.toLowerCase();
-
-        if (lower.contains("always") || lower.contains("never") || lower.contains("constantly")) {
-            warnings.add("⚠️ Warning: Words like 'always' or 'never' are often exaggerations/judgments. Can you be more specific about a single time?");
-        }
-        if (lower.contains("good") || lower.contains("bad") || lower.contains("wrong") || lower.contains("right")) {
-            warnings.add("⚠️ Warning: 'Good/Bad/Right/Wrong' are evaluations. Can you describe the specific action instead?");
-        }
-
-        return warnings;
+    public NvcValidator(String type, InputStream inputStream) throws IOException {
+        this.type = type;
+        loadRules(inputStream);
     }
 
-    public List<String> analyzeFeeling(String text) {
+    private void loadRules(InputStream inputStream) throws IOException {
+        this.rules = objectMapper.readValue(inputStream, new TypeReference<List<NvcRule>>() {});
+        for (NvcRule rule : rules) {
+            rule.compile();
+        }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public List<String> analyze(String text) {
         List<String> warnings = new ArrayList<>();
-        String lower = text.toLowerCase();
+        if (text == null || text.isBlank()) return warnings;
 
-        if (lower.startsWith("that") || lower.contains("feel that") || lower.contains("feel like")) {
-            warnings.add("⚠️ Warning: 'I feel that/like...' is usually followed by a thought, not a feeling. Try starting with 'I feel [emotion]'.");
+        for (NvcRule rule : rules) {
+            if (rule.getCompiledPattern() != null && 
+                rule.getCompiledPattern().matcher(text).find()) {
+                warnings.add(rule.message);
+            }
         }
-        if (lower.contains("ignored") || lower.contains("betrayed") || lower.contains("attacked") || lower.contains("misunderstood")) {
-            warnings.add("⚠️ Warning: Words like 'ignored' or 'attacked' describe what someone did to you, not how you feel. (Try: 'hurt', 'lonely', 'scared').");
-        }
-
         return warnings;
     }
 }
