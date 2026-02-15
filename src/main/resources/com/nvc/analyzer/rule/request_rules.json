@@ -1,12 +1,26 @@
 [
-  {
-    "category": "exaggeration",
-    "words": ["always", "never", "constantly", "every time"],
-    "message": "⚠️ Warning: This word is often used as exaggeration. Try to reference a specific moment."
-  },
-  {
-    "category": "evaluation",
-    "words": ["good", "bad", "wrong", "right", "lazy", "mean"],
-    "message": "⚠️ Warning: This word is often used as evaluation. Try describing the neutral action instead."
-  }
-]
+    {
+      "category": "demand",
+      "words": ["should", "must", "have to", "ought to", "demand", "insist", "mandatory", 
+        "required", "immediately", "order","compulsory", "obligated", "forced", "essential", 
+        "critical", "policy", "requirement", "rule"
+      ],
+      "message": "⚠️ Warning: The request might be a demand, try to get rid of words that imply the lack of choice"
+    },
+    {
+      "category": "negative request",
+      "words": ["don't", "stop", "quit", "no more", "cease", "refrain", "no longer", 
+        "avoid", "prevent", "discontinue", "limit", "minimize", "suppress", "withhold", "abstain"
+      ],
+      "message": "⚠️ Warning: This might be a negative request (what NOT to do). Can you ask for a positive action instead?"
+    },
+    {
+      "category": "vague request",
+      "words": ["better", "soon", "something", "fairly", "eventually", "maybe", "quickly", 
+        "properly", "efficiently", "more", "less", "adequately", "appropriately", "correctly", 
+        "effectively", "nicely", "politely", "kindly", "fairly", "reasonably", "whenever", 
+        "at some point","shortly","later", "somehow", "in some way", "improve"
+      ],
+      "message": "⚠️ Warning: The request seems a bit vague. Can you specify a concrete action/time/place?"
+    }
+  ]
