@@ -1,12 +1,64 @@
 [
   {
-    "category": "exaggeration",
-    "words": ["always", "never", "constantly", "every time"],
-    "message": "⚠️ Warning: This word is often used as exaggeration. Try to reference a specific moment."
+    "category": "pseudo feeling",
+    "words": [
+      "ignored", "betrayed", "cheated", "rejected", "attacked", "let down",
+      "abandoned", "abused", "belittled", "blamed", "bullied", "criticized",
+      "distrusted", "harassed", "insulted", "intimidated", "manipulated",
+      "misunderstood", "neglected", "overworked", "patronized", "pressured",
+      "provoked", "put down", "threatened", "unappreciated", "unheard",
+      "unseen", "unsupported", "unwanted", "used", "victimized", "wronged",
+      "alienated", "blackmailed", "coerced", "cornered", "deceived", "degraded",
+      "deserted", "dictated to", "discredited", "disdained", "disregarded",
+      "dumped on", "exploited", "forgotten", "interrupted", "invalidated",
+      "invisible", "isolated", "left out", "looked down on", "marginalized",
+      "mocked", "not taken seriously", "outcast", "overpowered", "overshadowed",
+      "plagiarized", "pushed around", "ridiculed", "scorned", "set up", 
+      "shamed", "slandered", "smothered", "stifled", "taken for granted",
+      "taken advantage of", "teased", "trapped", "unaccepted", "unacknowledged",
+      "unloved", "unnoticed", "untrusted", "unvalued", "violated", "diminished",
+      "excluded", "judged", "misrepresented", "objectified", "ordered around",
+      "preached to", "quizzed", "rejected", "silenced", "suspected", "tricked",
+      "undermined", "unwelcome", "abandoned", "accused", "burned", "boxed-in",
+      "dismissed", "goaded", "hated", "manipulated", "mocked", "forced"
+     ],
+    "message": "⚠️ Warning: This word is a 'pseudo-feeling.' It implies someone is doing something to you. Can you identify the actual emotion you feel (e.g., hurt, scared, lonely)?"
   },
   {
-    "category": "evaluation",
-    "words": ["good", "bad", "wrong", "right", "lazy", "mean"],
-    "message": "⚠️ Warning: This word is often used as evaluation. Try describing the neutral action instead."
+    "category": "thought disguised as feeling",
+    "words": [
+      "like", "that", "as if"
+    ],
+    "message": "⚠️ Warning: Starting a sentence with 'I feel [word]' often introduces a thought rather than a feeling. Try 'I feel [emotion word]' instead."
+  },
+  {
+    "category": "pronouns",
+    "words": [
+      "he", "she", "they", "you", "it", "his", "hers", "its", "theirs", "yours", "your", "their", "her", "them"
+    ],
+    "message": "⚠️ Warning: Using a pronoun when talking about your own feelings often marks a thought instead of a feeling. Try 'I feel [emotion word]' instead."
+  },
+  {
+    "category": "self-judgment label",
+    "words": [
+      "incompetent", "worthless", "useless", "stupid", "incapable", "toxic",
+      "weak", "ugly", "unlovable", "lazy", "not good enough", "unholy", 
+      "boring", "clumsy", "foolish", "guilty", "shameful", "pathetic",
+      "selfish", "greedy", "unworthy", "unattractive", "needy", "ashamed", 
+      "too much", "not enough", "annoying", "burdensome", "dependent", 
+      "clueless", "naive", "arrogant", "egotistical", "cold", "heartless",
+      "unprofessional", "sloppy", "careless", "irresponsible", "dishonest",
+      "fake", "unproductive", "slow", "unintelligent", "shabby", "unimportant", 
+      "awkward", "weird", "unlikable", "forgettable", "replaceable", 
+      "unskilled", "ignorant", "closed-minded", "stubborn", "difficult", 
+      "destructive", "malicious", "mean", "hateful", "cruel", "judgmental",
+      "hypocritical", "weak-willed", "undisciplined", "unstable", "insane",
+      "crazy", "broken", "damaged", "defective", "unprepared", "behind", 
+      "cowardly", "unoriginal", "uninspiring", "mediocre", "average", 
+      "insignificant", "invisible", "disposable", "wrong", "flawed", "impure", 
+      "evil", "sinful", "unforgivable", "unjustified", "ridiculous", "absurd", 
+      "unfit", "helpless", "powerless", "hopeless", "bitter"
+    ],
+    "message": "⚠️ Warning: This is a self-judgment or a label. Can you connect with the underlying feeling (e.g., frustration, sadness, or fear)?"
   }
 ]
