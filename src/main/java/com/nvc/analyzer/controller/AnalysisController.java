@@ -82,16 +82,18 @@ public class AnalysisController {
         
         StringBuilder result = new StringBuilder();
 
-        if (!obsWarnings.isEmpty() || !feelWarnings.isEmpty() || !needWarnings.isEmpty() || !reqWarnings.isEmpty()) {
+        if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
+            result.append("Please fill in all 4 steps to complete the NVC process!");
+        } else if (!obsWarnings.isEmpty() || !feelWarnings.isEmpty() || !needWarnings.isEmpty() || !reqWarnings.isEmpty()) {
             result.append("ANALYSIS & TIPS\n");
             for (String w : obsWarnings) result.append(w).append("\n");
             for (String w : feelWarnings) result.append(w).append("\n");
+            for (String w : needWarnings) result.append(w).append("\n");
+            for (String w : reqWarnings) result.append(w).append("\n");
             result.append("\n"); 
+        } else {
+            result.append("There were no problems detected in your statement!\n");
         }
-        
-        if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
-            result.append("Please fill in all 4 steps to complete the NVC process!");
-        } 
 
         resultArea.setText(result.toString());
     }
