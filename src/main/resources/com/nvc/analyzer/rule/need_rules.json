@@ -1,12 +1,40 @@
 [
   {
-    "category": "exaggeration",
-    "words": ["always", "never", "constantly", "every time"],
-    "message": "⚠️ Warning: This word is often used as exaggeration. Try to reference a specific moment."
+    "category": "strategy instead of need",
+    "words": [
+      "you to", "me to", "him to", "her to", "them to", "us to", "that we", "that you", 
+      "that he", "that she", "a car", "more money", "a job", "to go", "to have", "to get", 
+      "to buy", "to sell", "a house", "an apology", "you should", "you must", "have to", 
+      "need you", "for you to", "want you to", "to stop", "to start", "to change", "a phone",
+      "the dishes", "the trash", "more time", "your help", "a break", "a vacation",
+      "a promotion", "a raise", "your attention", "your presence", "a call", "a text",
+      "to finish", "to listen", "to talk", "to stay", "to leave", "to move", 
+      "a hug", "some space", "the truth", "an explanation", "a reason", "for once",
+      "to be heard", "to be right", "to win", "the last word", "to fix", "to solve",
+      "to decide", "to choose", "to act", "to perform"
+    ],
+    "message": "ℹ️ Suggestion: It sounds like a specific strategy or person-dependent action. Especially in longer conflicts it might help to identify the universal need behind it (e.g., Ease, Security, or Contribution)"
   },
   {
-    "category": "evaluation",
-    "words": ["good", "bad", "wrong", "right", "lazy", "mean"],
-    "message": "⚠️ Warning: This word is often used as evaluation. Try describing the neutral action instead."
+    "category": "universal need",
+    "words": [
+      "connection", "affection", "appreciation", "belonging", "closeness", 
+      "communication", "community", "companionship", "compassion", 
+      "consideration", "consistency", "empathy", "inclusion", "intimacy", 
+      "love", "mutuality", "nurturing", "respect", "self-respect", 
+      "security", "stability", "support", "trust", "understanding", 
+      "warmth", "air", "food", "water", "movement", "exercise", 
+      "sleep", "shelter", "touch", "authenticity", "safety", "rest",
+      "integrity", "presence", "self-worth", "autonomy", "choice", 
+      "freedom", "independence", "space", "spontaneity", "play", "fun", 
+      "laughter", "beauty", "harmony", "inspiration", "order", "peace", 
+      "celebration", "mourning", "communion", "meaning", "awareness", 
+      "challenge", "clarity", "competence", "consciousness", "contribution", 
+      "creativity", "discovery", "efficacy", "growth", "hope", "learning", 
+      "participation", "purpose", "self-expression", "stimulation", 
+      "to be seen", "to be heard", "understanding", "protection",
+      "honesty", "reassurance", "acceptance"
+    ],
+    "message": "✅ Success: You've identified a universal human need!"
   }
 ]
