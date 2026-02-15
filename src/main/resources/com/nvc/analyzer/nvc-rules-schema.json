@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NVC Validation Rules",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string",
+        "description": "The type of NVC violation (e.g., exaggeration, evaluation)."
+      },
+      "words": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of trigger words or phrases."
+      },
+      "message": {
+        "type": "string",
+        "description": "The helpful feedback provided to the user."
+      }
+    },
+    "required": ["category", "words", "message"]
+  }
+}
