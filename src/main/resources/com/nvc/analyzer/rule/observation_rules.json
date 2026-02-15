@@ -6,7 +6,26 @@
   },
   {
     "category": "evaluation",
-    "words": ["good", "bad", "wrong", "right", "lazy", "mean"],
+    "words": [
+      "good", "bad", "wrong", "right", "lazy", "mean", "stupid", "idiot", "jerk", 
+      "irresponsible", "selfish", "rude", "disrespectful", "aggressive", "passive", 
+      "unfair", "dishonest", "unreliable", "clumsy", "wasteful", "boring", "arrogant", 
+      "greedy", "obnoxious", "incompetent", "weak", "crazy", "insane", "unprofessional", 
+      "failure", "success", "appropriate", "inappropriate", "normal", "abnormal", 
+      "ugly", "beautiful", "messy", "clean", "neat", "slow", "fast", "too much", 
+      "not enough", "efficient", "inefficient", "smart", "clever", "cunning", 
+      "manipulative", "controlling", "demanding", "needy", "insensitive", "cold", 
+      "for no reason", "without thinking", "on purpose", "intentionally", 
+      "just because", "deliberately", "typical", "classic", "standard", "absurd",
+      "ridiculous", "shameful", "pathetic", "cowardly", "brave", "honest", "perfect",
+      "imperfect", "annoying", "irritating", "childish", "immature", "mature",
+      "stubborn", "difficult", "easy", "hard", "complicated", "simple", "useless",
+      "useful", "important", "unimportant", "worthless", "valuable", "cheap",
+      "expensive", "waste of", "poorly", "well", "obvious", "unclear", "vague", 
+      "explicit", "shady", "suspicious", "reliable", "untrustworthy", "prejudiced", 
+      "biased", "narrow-minded", "open-minded", "pessimistic", "optimistic", "realistic", 
+      "unrealistic", "nonsense", "garbage", "trash", "masterpiece", "mediocre"
+    ],
     "message": "⚠️ Warning: This word is often used as evaluation. Try describing the neutral action instead."
   }
 ]
