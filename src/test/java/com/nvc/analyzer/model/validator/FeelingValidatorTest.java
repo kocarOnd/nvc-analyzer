@@ -21,7 +21,7 @@ class FeelingValidatorTest {
         String path = "com/nvc/analyzer/rule/feeling_rules.json";
         InputStream is = getClass().getClassLoader().getResourceAsStream(path);
         
-        assertNotNull(is, "Could not find observation_rules.json in resources");
+        assertNotNull(is, "Could not find feeling_rules.json in resources");
         
         feelingValidator = new NvcValidator("feeling", is);
     }
