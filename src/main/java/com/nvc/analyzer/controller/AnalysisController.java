@@ -53,6 +53,10 @@ public class AnalysisController {
         requestField.setText(process.getRequest());
     }
 
+    /**
+     * Loads the observation, feeling, need and request validator
+     * The function loads them concurrently to avoid freezing the screen.
+    */
     @FXML
     public void initialize() {
         CompletableFuture<NvcValidator> obsFuture = loadValidatorAsync("observation", "com/nvc/analyzer/rule/observation_rules.json");
