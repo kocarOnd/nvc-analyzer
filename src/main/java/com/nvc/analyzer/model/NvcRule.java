@@ -17,10 +17,10 @@ public class NvcRule {
     /**The name of the rule (e.g. 'pseudo feeling' or 'exaggeration')*/
     public String category;
 
-    /**List of keywords that trigger the rule */
+    /**List of keywords that trigger the rule*/
     public List<String> words;
 
-    /**An optional component that holds a reply*/
+    /**The feedback or guidance message associated with this rule*/
     public String message;
 
     @JsonIgnore
