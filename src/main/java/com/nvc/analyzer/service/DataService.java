@@ -9,11 +9,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the connection between the application and user data.
+ * Loads and saves the processes in form of {@code List<NvcProcess>}.
+ */
 public class DataService {
 
     private static final String FILE_PATH = "nvc_data.json";
     private final ObjectMapper mapper = new ObjectMapper();
 
+    /**
+     * Saves the given processes to a JSON file.
+     * @param processes List of NvcProcesses to be saved
+     */
     public void saveProcesses(List<NvcProcess> processes) {
         try {
             mapper.writeValue(new File(FILE_PATH), processes);
@@ -23,6 +31,11 @@ public class DataService {
         }
     }
 
+    /**
+     * Loads previously saved processes from nvc_data.json
+     * @return List of NvcProcesses or an empty list if the file doesn't exist
+     * or no processes have been saved.
+     */
     public List<NvcProcess> loadProcesses() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
@@ -30,7 +43,6 @@ public class DataService {
         }
 
         try {
-            // We need TypeReference to tell Jackson we want a List of NvcProcess objects - what's more, the TypeReference here is an annonymous subclass
             return mapper.readValue(file, new TypeReference<List<NvcProcess>>() {});
         } catch (IOException e) {
             e.printStackTrace();
