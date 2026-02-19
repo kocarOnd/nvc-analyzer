@@ -15,8 +15,17 @@ import java.util.List;
  */
 public class DataService {
 
-    private static final String FILE_PATH = "nvc_data.json";
+    private final String filePath;
     private final ObjectMapper mapper = new ObjectMapper();
+
+    /**Creates a new DataService that loads and saves data to nvc_data.json */
+    public DataService() {
+        this.filePath = "nvc_data.json";
+    }
+
+    public DataService(String filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * Saves the given processes to a JSON file.
@@ -24,7 +33,7 @@ public class DataService {
      */
     public void saveProcesses(List<NvcProcess> processes) {
         try {
-            mapper.writeValue(new File(FILE_PATH), processes);
+            mapper.writeValue(new File(filePath), processes);
             System.out.println("Saved " + processes.size() + " items.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,7 +46,7 @@ public class DataService {
      * or no processes have been saved.
      */
     public List<NvcProcess> loadProcesses() {
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (!file.exists()) {
             return new ArrayList<>(); 
         }
