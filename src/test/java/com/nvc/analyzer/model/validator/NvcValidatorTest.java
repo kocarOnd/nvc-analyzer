@@ -1,6 +1,6 @@
 package com.nvc.analyzer.model.validator;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,7 +20,7 @@ class NvcValidatorTest {
     void testConfigurationFilesLoad(String path) {
         InputStream is = getClass().getClassLoader().getResourceAsStream(path);
         
-        Assertions.assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() -> {
             if (is == null) throw new Exception("File not found: " + path);
             new NvcValidator("test", is);
         });
