@@ -64,6 +64,8 @@ public class AnalysisController {
         CompletableFuture<NvcValidator> needFuture = loadValidatorAsync("need", "com/nvc/analyzer/rule/need_rules.json");
         CompletableFuture<NvcValidator> reqFuture = loadValidatorAsync("request", "com/nvc/analyzer/rule/request_rules.json");
 
+        // I have asked the AI for suggestions which classes to use, therefore I am using CompletableFuture and Platform,
+        // althought it is my first time handling them
         CompletableFuture.allOf(obsFuture, feelFuture, needFuture, reqFuture)
             .thenAccept(v -> {
                 Platform.runLater(() -> {
