@@ -3,17 +3,20 @@ package com.nvc.analyzer.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import com.nvc.analyzer.App;
 import com.nvc.analyzer.model.NvcProcess;
 import com.nvc.analyzer.model.NvcValidator;
 import com.nvc.analyzer.service.DataService;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 
 /**
  * Controller for the NVC Analysis view.
@@ -26,6 +29,7 @@ public class AnalysisController {
     @FXML private TextField feelingField;
     @FXML private TextField needField;
     @FXML private TextField requestField;
+    @FXML private Button analyseBtn;
     @FXML private TextArea resultArea;
 
     private final DataService dataService = new DataService();
@@ -49,17 +53,46 @@ public class AnalysisController {
         requestField.setText(process.getRequest());
     }
 
-    /**Loads the observation, feeling, need and request validator */
     @FXML
     public void initialize() {
-        try {
-            observationValidator = createValidator("observation", "com/nvc/analyzer/rule/observation_rules.json");
-            feelingValidator = createValidator("feeling", "com/nvc/analyzer/rule/feeling_rules.json");
-            needValidator = createValidator("need", "com/nvc/analyzer/rule/need_rules.json");
-            requestValidator = createValidator("request", "com/nvc/analyzer/rule/request_rules.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CompletableFuture<NvcValidator> obsFuture = loadValidatorAsync("observation", "com/nvc/analyzer/rule/observation_rules.json");
+        CompletableFuture<NvcValidator> feelFuture = loadValidatorAsync("feeling", "com/nvc/analyzer/rule/feeling_rules.json");
+        CompletableFuture<NvcValidator> needFuture = loadValidatorAsync("need", "com/nvc/analyzer/rule/need_rules.json");
+        CompletableFuture<NvcValidator> reqFuture = loadValidatorAsync("request", "com/nvc/analyzer/rule/request_rules.json");
+
+        CompletableFuture.allOf(obsFuture, feelFuture, needFuture, reqFuture)
+            .thenAccept(v -> {
+                Platform.runLater(() -> {
+                    try {
+                        this.observationValidator = obsFuture.join();
+                        this.feelingValidator = feelFuture.join();
+                        this.needValidator = needFuture.join();
+                        this.requestValidator = reqFuture.join();
+
+                        analyseBtn.setDisable(false);
+                    
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            })
+            .exceptionally(ex -> {
+                Platform.runLater(() -> {
+                    System.err.println("An error occurred while loading the validators: " + ex.getMessage());
+                    ex.printStackTrace();
+                });
+                return null;
+            });
+    }
+
+    private CompletableFuture<NvcValidator> loadValidatorAsync(String type, String resourcePath) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return createValidator(type, resourcePath);
+            } catch (IOException e) {
+                throw new RuntimeException("An error when loading the rules for: " + type, e);
+            }
+        });
     }
 
     private NvcValidator createValidator(String type, String resourcePath) throws IOException {
