@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller for the history view.
+ * Shows saved items and allows their edits.
+ */
 public class HistoryController {
 
     @FXML
@@ -24,11 +28,13 @@ public class HistoryController {
 
     private final DataService dataService = new DataService();
 
+    /**Loads the data and organizes the text of the cells in the list view */
     @FXML
     public void initialize() {
         ObservableList<NvcProcess> data = FXCollections.observableArrayList(dataService.loadProcesses());
         historyList.setItems(data);
 
+        //AI has suggested the following piece of code to me and although I understand it, I do not think I would have been able to come up with it myself
         historyList.setCellFactory(param -> new ListCell<NvcProcess>() {
             @Override
             protected void updateItem(NvcProcess item, boolean empty) {
@@ -43,6 +49,10 @@ public class HistoryController {
         });
     }
 
+    /**
+     * Triggered by the Edit button click, this method loads the selected process to analyse view and switches to it.
+     * If no cell is selected, shows an alert instead.
+     */
     @FXML
     private void handleEdit() throws IOException {
         NvcProcess selected = historyList.getSelectionModel().getSelectedItem();
@@ -65,6 +75,9 @@ public class HistoryController {
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Triggered by the Return to Menu button click, this method changes the current root to menu view.
+     */
     @FXML
     private void goBack() throws IOException {
         App.setRoot("menu_view");
