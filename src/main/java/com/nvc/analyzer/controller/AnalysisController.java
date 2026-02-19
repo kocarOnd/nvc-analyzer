@@ -15,6 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Controller for the NVC Analysis view.
+ * Handles user input for the 4-step NVC process, validates the text 
+ * against predefined rules, and displays feedback or formatted statements.
+ */
 public class AnalysisController {
 
     @FXML private TextField observationField;
@@ -31,6 +36,10 @@ public class AnalysisController {
 
     private NvcProcess currentProcess;
 
+    /**
+     * Puts an existing NVC process into the controller and populates the text fields with its data. 
+     * @param process The NvcProcess object containing the data to edit.
+     */
     public void setProcess(NvcProcess process) {
         this.currentProcess = process;
         
@@ -40,6 +49,7 @@ public class AnalysisController {
         requestField.setText(process.getRequest());
     }
 
+    /**Loads the observation, feeling, need and request validator */
     @FXML
     public void initialize() {
         try {
@@ -60,6 +70,11 @@ public class AnalysisController {
         return new NvcValidator(type, is);
     }
 
+    /**
+     * Triggered by the Analyze button click, this method loads the text from all the fields and shows respective analysis in resultArea
+     * It analyses the text from every field using the appropriate validator and shows 
+     * the result in resultArea. If any of the fields is empty, it shows a warning instead.
+     */
     @FXML
     private void handleAnalyze() {
         String obs = observationField.getText();
@@ -86,9 +101,13 @@ public class AnalysisController {
             result.append("Please fill in all 4 steps to complete the NVC process!");
         } else if (!obsWarnings.isEmpty() || !feelWarnings.isEmpty() || !needWarnings.isEmpty() || !reqWarnings.isEmpty()) {
             result.append("ANALYSIS & TIPS\n");
+            result.append("\nObservation: \n");
             for (String w : obsWarnings) result.append(w).append("\n");
+            result.append("\nFeeling: \n");
             for (String w : feelWarnings) result.append(w).append("\n");
+            result.append("\nNeed: \n");
             for (String w : needWarnings) result.append(w).append("\n");
+            result.append("\nRequest: \n");
             for (String w : reqWarnings) result.append(w).append("\n");
             result.append("\n"); 
         } else {
@@ -98,6 +117,10 @@ public class AnalysisController {
         resultArea.setText(result.toString());
     }
 
+    /**
+     * Triggered by the Write Out button click, this method loads the text from all the fields and shows the full statement in resultArea
+     * If any of the fields is empty, shows a warning instead.
+     */
     @FXML
     private void handleWrite() {
         String obs = observationField.getText();
@@ -129,6 +152,10 @@ public class AnalysisController {
         resultArea.setText(result.toString());
     }
 
+    /**
+     * Triggered by the Save button click, this method loads text from all the fields, saves it to nvc_data.json
+     * If any of the fields is empty, shows an alert instead. An alert is shown on a succesful save as well.
+     */
     @FXML
     private void handleSave() {
         String obs = observationField.getText();
@@ -170,6 +197,9 @@ public class AnalysisController {
             
     }
 
+    /**
+     * Triggered by the Return to Menu button click, this method changes the current root to menu view.
+     */
     @FXML
     private void goBack() throws IOException {
         App.setRoot("menu_view");
