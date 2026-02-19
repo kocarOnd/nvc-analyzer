@@ -8,6 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * A javafx application to analyze conflicts using the NVC principles.
+ * @version 1.0
+ * @since 2026-02-19
+ * @author Ondřej Kočár
+ * @see <a href="https://en.wikipedia.org/wiki/Nonviolent_Communication">NVC on Wikipedia</a>
+ */
 public class App extends Application {
 
     private static Scene scene;
@@ -21,6 +28,11 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * Changes the root of the applications to different views.
+     * @param fxml  Name of the fxml view that is to be set as the root
+     * @throws IOException
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
