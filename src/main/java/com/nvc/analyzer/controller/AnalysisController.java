@@ -85,6 +85,7 @@ public class AnalysisController {
                 Platform.runLater(() -> {
                     System.err.println("An error occurred while loading the validators: " + ex.getMessage());
                     ex.printStackTrace();
+                    App.showAlert("Unable to load validators", "The app could not load the text validators! Text analysing may not work properly");
                 });
                 return null;
             });
