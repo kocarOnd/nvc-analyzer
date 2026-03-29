@@ -14,8 +14,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 /**
@@ -203,7 +201,7 @@ public class AnalysisController {
         String req = requestField.getText();
 
         if (obs.isBlank() || feel.isBlank() || need.isBlank() || req.isBlank()) {
-            showAlert("Missing Info", "Please fill in all fields before saving.");
+            App.showAlert("Missing Info", "Please fill in all fields before saving.");
             return;
         }
 
@@ -219,7 +217,7 @@ public class AnalysisController {
             allProcesses.add(newProcess);
 
             dataService.saveProcesses(allProcesses);
-            showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            App.showAlert("Success", "Your NVC analysis has been saved succesfully!");
             
         } else {
             for (int i = 0; i < allProcesses.size(); i++) {
@@ -232,7 +230,7 @@ public class AnalysisController {
                 }
             }
             dataService.saveProcesses(allProcesses);
-            showAlert("Success", "The analysis has been updated successfully!");
+            App.showAlert("Success", "The analysis has been updated successfully!");
         }
             
     }
@@ -245,11 +243,4 @@ public class AnalysisController {
         App.setRoot("menu_view");
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 }
