@@ -2,6 +2,7 @@ package com.nvc.analyzer.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -205,7 +206,13 @@ public class AnalysisController {
             return;
         }
 
-        List<NvcProcess> allProcesses = dataService.loadProcesses();
+        List<NvcProcess> allProcesses = new ArrayList<>();
+
+        try {
+            allProcesses = dataService.loadProcesses();
+        } catch (Exception e) {
+            App.showAlert("Unable to load processes", "The application couldn't load the app's data");
+        }
 
         if (currentProcess == null) {
             NvcProcess newProcess = new NvcProcess();

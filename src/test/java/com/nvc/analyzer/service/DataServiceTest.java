@@ -33,7 +33,13 @@ class DataServiceTest {
 
     @Test
     void loadProcesses_fileDoesNotExist_returnsEmptyList() {
-        List<NvcProcess> result = dataService.loadProcesses();
+
+        List<NvcProcess> result = null;
+        try {
+            result = dataService.loadProcesses();
+        } catch (IOException e) {
+            System.err.println("An IOException occured while loading the processes: " + e.getMessage());
+        }
         
         assertNotNull(result, "The list should not be null");
         assertTrue(result.isEmpty(), "The list should be empty when the file does not exist");
@@ -46,7 +52,14 @@ class DataServiceTest {
         List<NvcProcess> processesToSave = Arrays.asList(process1, process2);
 
         dataService.saveProcesses(processesToSave);
-        List<NvcProcess> loadedProcesses = dataService.loadProcesses();
+        List<NvcProcess> loadedProcesses = null;
+
+        try {
+            loadedProcesses = dataService.loadProcesses();
+        } catch (IOException e) {
+            System.err.println("An IOException occured while loading the processes: " + e.getMessage());
+        }
+        
         
         assertNotNull(loadedProcesses);
         assertEquals(2, loadedProcesses.size(), "There should have been exactly two processes.");

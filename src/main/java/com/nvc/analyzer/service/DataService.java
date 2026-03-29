@@ -45,17 +45,12 @@ public class DataService {
      * @return List of NvcProcesses or an empty list if the file doesn't exist
      * or no processes have been saved.
      */
-    public List<NvcProcess> loadProcesses() {
+    public List<NvcProcess> loadProcesses() throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
             return new ArrayList<>(); 
         }
 
-        try {
-            return mapper.readValue(file, new TypeReference<List<NvcProcess>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
+        return mapper.readValue(file, new TypeReference<List<NvcProcess>>() {});
     }
 }

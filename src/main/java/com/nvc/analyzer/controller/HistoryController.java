@@ -16,6 +16,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for the history view.
@@ -31,7 +33,14 @@ public class HistoryController {
     /**Loads the data and organizes the text of the cells in the list view */
     @FXML
     public void initialize() {
-        ObservableList<NvcProcess> data = FXCollections.observableArrayList(dataService.loadProcesses());
+        List<NvcProcess> processes = new ArrayList<>();
+
+        try {
+            processes = dataService.loadProcesses();
+        } catch (Exception e) {
+            App.showAlert("Unable to load processes", "The application couldn't load the app's data");
+        }
+        ObservableList<NvcProcess> data = FXCollections.observableArrayList(processes);
         historyList.setItems(data);
 
         //AI has suggested the following piece of code to me and although I understand it, I do not think I would have been able to come up with it myself
