@@ -217,6 +217,8 @@ public class AnalysisController {
             newProcess.setRequest(req);
             
             allProcesses.add(newProcess);
+
+            dataService.saveProcesses(allProcesses);
             showAlert("Success", "Your NVC analysis has been saved succesfully!");
             
         } else {
@@ -229,10 +231,9 @@ public class AnalysisController {
                     break; 
                 }
             }
+            dataService.saveProcesses(allProcesses);
             showAlert("Success", "The analysis has been updated successfully!");
         }
-        
-        dataService.saveProcesses(allProcesses);
             
     }
 
