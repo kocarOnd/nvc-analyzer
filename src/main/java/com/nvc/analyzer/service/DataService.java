@@ -30,20 +30,19 @@ public class DataService {
     /**
      * Saves the given processes to a JSON file.
      * @param processes List of NvcProcesses to be saved
+     * @throws IOException When a problem with nvc_data.json arrises 
      */
-    public void saveProcesses(List<NvcProcess> processes) {
-        try {
-            mapper.writeValue(new File(filePath), processes);
-            System.out.println("Saved " + processes.size() + " items.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void saveProcesses(List<NvcProcess> processes) throws IOException {
+        mapper.writeValue(new File(filePath), processes);
+        System.out.println("Saved " + processes.size() + " items.");
     }
 
     /**
      * Loads previously saved processes from nvc_data.json
      * @return List of NvcProcesses or an empty list if the file doesn't exist
      * or no processes have been saved.
+     * @throws IOException When the file exists, but the mapper could not map 
+     * it's contents properly
      */
     public List<NvcProcess> loadProcesses() throws IOException {
         File file = new File(filePath);

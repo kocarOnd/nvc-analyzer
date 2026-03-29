@@ -51,7 +51,11 @@ class DataServiceTest {
         NvcProcess process2 = new NvcProcess();
         List<NvcProcess> processesToSave = Arrays.asList(process1, process2);
 
-        dataService.saveProcesses(processesToSave);
+        try {
+            dataService.saveProcesses(processesToSave);
+        } catch (IOException e) {
+            System.err.println("An IOException occured while saving the processes: " + e.getMessage());
+        }
         List<NvcProcess> loadedProcesses = null;
 
         try {

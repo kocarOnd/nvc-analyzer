@@ -224,8 +224,12 @@ public class AnalysisController {
             
             allProcesses.add(newProcess);
 
-            dataService.saveProcesses(allProcesses);
-            App.showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            try {
+                dataService.saveProcesses(allProcesses);
+                App.showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            } catch (IOException e) {
+                App.showAlert("Failure", "Your data could not have been saved properly, please try again");
+            }
             
         } else {
             for (int i = 0; i < allProcesses.size(); i++) {
@@ -237,7 +241,12 @@ public class AnalysisController {
                     break; 
                 }
             }
-            dataService.saveProcesses(allProcesses);
+            try {
+                dataService.saveProcesses(allProcesses);
+                App.showAlert("Success", "Your NVC analysis has been saved succesfully!");
+            } catch (IOException e) {
+                App.showAlert("Failure", "Your data could not have been saved properly, please try again");
+            }
             App.showAlert("Success", "The analysis has been updated successfully!");
         }
             
